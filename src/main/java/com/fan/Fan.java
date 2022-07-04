@@ -8,14 +8,14 @@ public class Fan {
 
 	private Logger log = Logger.getLogger(Fan.class.getName());
 
-	private ICord upCord;
-	private ICord downCord;
+	private ICord speedCord;
+	private ICord directionCord;
 	private FanState state;
 
 	public Fan(FanState state) {
 		this.state = state;
-		this.upCord = new SpeedControllerCord(state);
-		this.downCord = new ReverseControllerCord(state);
+		this.speedCord = new SpeedControllerCord(state);
+		this.directionCord = new ReverseControllerCord(state);
 	}
 
 	public Fan() {
@@ -27,12 +27,12 @@ public class Fan {
 	}
 
 	public void pullSpeedControllerCord() {
-		upCord.pull();
+		speedCord.pull();
 		log.info(String.format("Pull Up Cord.Current Speed is %s", state.getCurrentSpeed()));
 	}
 
 	public void pullReverseControllerCord() {
-		downCord.pull();
+		directionCord.pull();
 		log.info(String.format("Pull reverse controller Cord.Current direction is %s", state.getCurrentDirection()));
 	}
 
